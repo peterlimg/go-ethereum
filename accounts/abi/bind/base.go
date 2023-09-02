@@ -430,8 +430,10 @@ func (c *BoundContract) FilterLogs(opts *FilterOpts, name string, query ...[]int
 	/* TODO(karalabe): Replace the rest of the method below with this when supported
 	sub, err := c.filterer.SubscribeFilterLogs(ensureContext(opts.Context), config, logs)
 	*/
+	fmt.Println("config err:", config)
 	buff, err := c.filterer.FilterLogs(ensureContext(opts.Context), config)
 	if err != nil {
+		fmt.Println("filter logs error", err)
 		return nil, nil, err
 	}
 	sub, err := event.NewSubscription(func(quit <-chan struct{}) error {
